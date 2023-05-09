@@ -1,0 +1,112 @@
+/* GENERAL INFORMATION */
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+
+
+/* NAVIGATION BAR */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 100px 15% 30px 15%;
+    overflow: hidden;
+    background-color: #F2F2F2;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #a4abb6;
+    padding: 14px 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+}
+
+li a:hover {
+    color: #5068A9;
+}
+
+.nav_home {
+    color:#5068A9;
+    letter-spacing: 2px;
+}
+
+
+
+/* MAIN BODY */
+
+.main {
+    margin: 60px 15% 0 15%;
+    font-size: 18px;
+    background-color: white;
+}
+
+.article {
+    padding: 5%;
+    text-align: justify;
+}
+
+.article_titre {
+    margin: 0;
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 23px;
+    text-align: left;
+}
+
+.elem_center {
+    text-align: center;
+    margin : 2% 0;
+}
+
+.separator {
+    border-top: 1px solid #bbb;
+    margin: 0 5%;
+}
+
+
+/* ELEMENTS */
+
+button {
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 6px 18px;
+    border: none;
+}
+
+footer {
+    height: 60px;
+    background-color: grey;
+}
+
+h3 {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+p, button {
+    font-size: 18px;
+}
+
+table {
+    margin-top: 5%;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+}
+
+td {
+    padding: 1% 3%;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+}

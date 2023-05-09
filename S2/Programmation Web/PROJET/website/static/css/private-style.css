@@ -1,0 +1,185 @@
+/* PRIVATE-PAGE : NAVIGATION BAR */
+
+.nav-container-private {
+    top: 0;
+    width: 100%;
+    height: 80px;
+    color: white;
+    background-color: #081c54;
+}
+
+.nav-bar-private {
+    list-style: none;
+    margin: 0;
+    padding: 25px 5% 0 5%;
+    font-size: 20px;
+}
+
+.nav-bar-private li a {
+    color: white;
+}
+
+
+/* PRIVATE : SIDE BAR */
+
+.private-side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #444;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.p-message-categorie {
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 180px;
+    color: lightgray;
+}
+
+.p-message-block {
+    padding-top: 50px;
+}
+
+#close-side-nav {
+    position: absolute;
+    margin-left: 200px;
+    color: lightgrey;
+}
+
+#open-side-nav {
+    display: inline;
+    transition: display .5s;
+}
+
+.nav-bar-left {
+    height: 80px;
+    background-color: #081c54;
+    margin-bottom: 10%;
+}
+
+.private-side-nav span:hover {
+    color: white;
+}
+
+
+
+/* PRIVATE ELEMENTS'S DESIGN */
+
+.p-message {
+    padding: 50px 30px 0 30px;
+}
+
+.p-text-h4 {
+    color: #444;
+}
+
+.p-text-h2 {
+    margin-bottom: 0;
+}
+
+.hp-text-a {
+    text-decoration: none;
+    color: lightgrey;
+    display: block;
+    font-size: 15px;
+}
+
+.hp-text-a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+/* PRIVATE : MAIN CONTENT */
+
+.main-content {
+    transition: margin-left .5s;
+}
+
+.add-message {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #444;
+    opacity: 0.5;
+    color: lightgrey;
+    padding: 15px;
+    border-radius: 20px;
+}
+  
+.add-message:hover {
+    background-color: grey;
+    color: white;
+}
+
+@media screen and (max-height: 450px) {
+    .private-side-nav {padding-top: 15px;}
+    .private-side-nav a {font-size: 18px;}
+}
+
+
+
+/* PRIVATE - IMAGE GALLERY */
+
+.message-galery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    list-style: none;
+    gap: 40px;
+    padding: 0 2%;
+    margin-top: 40px;
+}
+
+.message {
+    width: 210px;
+    height: 210px;
+    border-radius: 20px;
+    background-color: white;
+    padding: 25px;
+    position: relative;
+}
+
+.overlay {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #ffffff;
+    z-index: 10;
+    border-radius: 20px;
+}
+
+.overlay span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+.message-remove {
+    background-color: lightgray;
+    opacity: .8;
+    display: none;
+}

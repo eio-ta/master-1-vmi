@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="shortcut icon" href="#">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/private-style.css" %}"> 
+
+    </head>
+
+    <body>
+        <!-- PRIVATE - SIDE NAV -->
+        <div class="private-side-nav">
+            <div class="nav-bar-left"></div>
+
+            <span class="material-symbols-outlined" id="close-side-nav">close</span>
+            
+            <div class="p-message-categorie">
+                <div class="p-message-block">
+                    <p>Hello <b username="{{ request.session.username }}" id="username">{{ request.session.username }}</b> !</p>
+                    <p>0</p><span class="material-symbols-outlined" style="color: orange; position: absolute;
+                    margin-left: 12px;
+                    margin-top: -32px;">savings</span>
+                    <br><br>
+                    <h4 class="hp-text-h4">My messages</h4>
+                    <a class="hp-text-a" id="all-message"><i class="fa-solid fa-message"></i> All messages</a>
+                    <a class="hp-text-a" id="message-share"><i class="fa-solid fa-share"></i> Shared messages</a>
+                    <a class="hp-text-a" id="message-remove"><i class="fa-solid fa-trash"></i> Deleted messages</a>
+                </div>
+
+                <div class="p-message-block">
+                    <h4 class="hp-text-h4">My ACTIONS</h4>
+                    <a class="hp-text-a" data-toggle="modal" data-target="#add-message"><i class="fa-solid fa-add"></i> New message</a>
+                </div>
+
+                <div class="p-message-block">
+                    <h4 class="hp-text-h4">My account</h4>
+                    <a class="hp-text-a" data-toggle="modal" data-target="#change-email"><i class="fa-solid fa-at"></i> Update email</a>
+                    <a class="hp-text-a" data-toggle="modal" data-target="#change-mdp"><i class="fa-solid fa-lock"></i> Update password</a>
+                    <a class="hp-text-a" href="logout"><i class="fa-solid fa-sign-out"></i> Logout</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- PRIVATE - SIDE NAV : END -->
+
+
+        <!-- PRIVATE - BODY -->
+        <div class="main-content">
+
+            <!-- PRIVATE - NAVBAR -->
+            <div class="nav-container-private" style="position: fixed; z-index: 1;">
+                <ul class="nav-bar-private">
+                    <li id="open-side-nav"><span id="open">&#9776; </span></li>
+                </ul>
+            </div>
+            <!-- PRIVATE - NAVBAR : END -->
+
+            <!-- PRIVATE - MESSAGES -->
+            <section class="p-message">
+                
+                <h2 class="hp-text-h2 p-text-h2" id="message-title" style="margin-top: 100px;">Shared messages</h2>
+                <h4 class="hp-text-h4 p-text-h4"><span id="number-message">[nombre]</span> message(s)</h4>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} alert-dismissible show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <ul class="message-galery"  id="message-galery">
+                    {% for message in user_messages %}
+                        <li id="message-{{message.id}}" class="message {% if not message.deleted %}message-share{% else %}message-remove{% endif %}">
+                            <h4 class="hp-text-h4">{{ message.message|slice:":13" }}{% if message.message|length > 15 %}...{% endif %}</h4>
+                            <br>
+                            <div style="display: inline-block;">
+                                <span>{{message.total_essaie}} </span><span><i style="color: rgb(0, 168, 98);" class="fa-solid fa-flag-checkered"></i></span>&nbsp; &nbsp;
+                                <span>{{message.winning_tendancy}} </span><span><i style="color: rgb(112, 172, 0);" class="fa-solid fa-arrow-trend-up"></i></span>&nbsp; &nbsp;
+                                <span>{{message.loosing_tendancy}} </span><span><i style="color: red;" class="fa-solid fa-arrow-trend-down"></i></span>
+                            </div>
+                            <div style="display: inline-block; margin-top: 5px;">
+                                <span>{{message.number_of_player}} </span><span><i style="color: blue;" class="fa-solid fa-user"></i></span>&nbsp; &nbsp;
+                                <span>{{message.winner}} </span><span><i style="color: green;" class="fa-solid fa-trophy"></i></span>&nbsp; &nbsp;
+                                <span>{{message.not_yet_won}} </span><span><i style="color: red;" class="fa-sharp fa-solid fa-circle-xmark"></i></span>&nbsp; &nbsp;
+                            </div>
+                            <p class="hp-text-p" style="color: grey; font-size: small; margin-top: 20px;">{{ message.date }}</p>
+                            
+                            {% if not message.deleted %}
+                                <div class="overlay" >
+                                    <span style="cursor: pointer;" id-message="{{message.id}}" class="message_click material-symbols-outlined">auto_fix</span>
+                                    <div style="margin-top: 5px;">
+                                        <a href="" target="_blank" class="btn btn-info">
+                                            <i style="font-size: 10px;" class="fa-brands fa-twitter text-white"></i>
+                                        </a>
+                                        <a href="" target="_blank" class="btn btn-primary">
+                                            <i style="font-size: 10px;" class="fa-brands fa-facebook"></i>
+                                        </a>
+                                        <a href="" target="_blank" class="btn btn-success">
+                                            <i style="font-size: 10px;" class="fa-brands fa-whatsapp"></i>
+                                        </a>
+                                        <button onclick="copy_link('{{ message.lien }}')"  class="btn btn-secondary">
+                                            <i style="font-size: 10px; color:black;" class="fa-sharp fa-solid fa-share-from-square"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+            </section>
+            <!-- PRIVATE - MESSAGES : END -->
+        </div>
+        <!-- PRIVATE - BODY : END -->
+
+        <!-- PRIVATE - BUTTON ADD -->
+        <button class="add-message" data-toggle="modal" data-target="#add-message"><span class="material-symbols-outlined">add</span></button>
+        <!-- PRIVATE - BUTTON ADD : END -->
+
+        <!-- PRIVATE - MODAL -->
+        <div class="modal fade" id="add-message" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="hp-text-h4" >Partager un message</h4>
+                    </div>
+                    
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="login-form-label">Message</label>
+                                <textarea id="text-new-message" class="form-control login-input-form" rows="3" style="resize: none;"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label">Mise en place d'un indice</label>
+                                <textarea id="indice-new-message" class="form-control login-input-form" rows="1" style="resize: none;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="hp-button" data-dismiss="modal" style="background-color: buttonface;">Fermer</button>
+                            <button type="button" id="create-message" class="hp-button">Partager</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- PRIVATE - MODAL : END -->
+
+        <!-- PRIVATE - MODAL : MESSAGE -->
+        <div style="top: 60px" class="modal fade" id="see-message" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="hp-text-h4">Shared message</h4>
+                    </div>
+                    
+                    <form >
+                        <div class="modal-body" >
+                            <div class="form-group">
+                                <label class="login-form-label">Message</label>
+                                <textarea id="message-shared" class="form-control login-input-form" rows="2" placeholder="indice que le joueur a mis / sinon rien" style="resize: none;" readonly></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label">Date du partage</label>
+                                <input type="text" id="date-form" class="form-control login-input-form" placeholder="date" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label">Mise en place d'un indice</label>
+                                <textarea id="indice-shared-message" class="form-control login-input-form" rows="1" placeholder="indice que le joueur a mis / sinon rien" style="resize: none;" readonly></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label"> Classement</label>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="p-text-h4 hp-text-h4" style="font-size: 15px;">Pseudo</th>
+                                            <th class="p-text-h4 hp-text-h4" style="font-size: 15px;">Tries</th>
+                                            <th class="p-text-h4 hp-text-h4" style="font-size: 15px;">Correct</th>
+                                            <th class="p-text-h4 hp-text-h4" style="font-size: 15px;">Wrong</th>
+                                            <th class="p-text-h4 hp-text-h4" style="font-size: 15px;">Won</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="stats-board-game">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="hp-button" data-dismiss="modal" style="background-color: buttonface;">Close</button>
+                            <button class="hp-button" id-message-delete="" id="delete-message-btn">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- PRIVATE - MODAL MESSAGE : END -->
+
+        <!-- PRIVATE - MODAL : EMAIL ET MOT DE PASSE -->
+        <div class="modal fade" id="change-email" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="hp-text-h4" id="change-profil-title" >Changer son mail</h4>
+                    </div>
+                    
+                    
+                    <form action="change_email" method="POST">
+                    {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="login-form-label">Nouveau mail</label>
+                                <input type="email" name="new-email" class="form-control login-input-form">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="hp-button" data-dismiss="modal" style="background-color: buttonface;">Fermer</button>
+                            <button type="submit" class="hp-button">Modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="change-mdp" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="hp-text-h4" id="change-profil-title" >Change your password</h4>
+                    </div>
+                    
+                    <form action="change_password" method="POST">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="login-form-label">Old password</label>
+                                <input type="password" name="current_password" class="form-control login-input-form">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label">New password</label>
+                                <input type="password" name="new_password" class="form-control login-input-form">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="login-form-label">Confirm new password</label>
+                                <input type="password" name="confirm_password" class="form-control login-input-form">
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button class="hp-button" data-dismiss="modal" style="background-color: buttonface;">Fermer</button>
+                            <button type="submit" class="hp-button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- PRIVATE - MODAL MESSAGE : END -->
+
+        <script src="{% static "js/private-animation.js" %}"></script>
+        <script src="{% static "js/utilities.js" %}"></script>
+        <script src="{% static "js/private-utilities.js" %}"></script>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="shortcut icon" href="#">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    </head>
+
+    <body>
+        
+        <!-- LOGIN-PAGE - NAVIGATION BAR -->
+        <div class="nav-container solid-nav">
+            <ul class="nav-bar">
+                <li class="nav-logo">
+                    <a href="home">
+                        <img src="{% static "css/medias/logo.svg" %}" style="height:35px;">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- LOGIN-PAGE - NAVIGATION BAR : END -->
+
+
+
+        <!-- LOGIN-PAGE - FORM -->
+        <section>
+            <div class="complete-blank"></div>
+            <div class="container">
+                <h2 class="hp-text-h2 text-center" style="padding-bottom:30px">Login Page</h2>
+                <form class="login-form" method="post">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.tags}} alert-dismissible show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label class="login-form-label">Your Username</label>
+                        <input name="email" type="text" class="form-control login-input-form" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="login-form-label">Password</label>
+                        <input name="password" type="password" class="form-control login-input-form" required>
+                    </div>
+
+                    <br>
+
+                    <p class="hp-text-p">If you do not have an account yet, please click <a href="register">here</a> to sign up.</p>
+                    <button type="submit" class="hp-button" style="width:100%;" >Submit</button>
+                </form>
+            </div>
+        </section>
+        <!-- LOGIN-PAGE - FORM : END -->
+
+
+
+        <!-- LOGIN-PAGE : FOOTER -->
+        <footer class="text-center" style="padding-top: 50px; position: fixed; bottom: 0;">
+            <p style="padding-bottom: 50px;">© Copyright (2023)</p>
+        </footer>
+        <!-- LOGIN-PAGE : FOOTER : END -->
+    </body>
+</html>

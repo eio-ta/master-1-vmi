@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <!-- INCLUDE GOOGLE FONT -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abel&family=Josefin+Sans:wght@600&family=Sofia+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
+
+
+        <!-- INCLUDE STYLE CSS -->
+        <link href="style.css" rel="stylesheet">
+
+        <title>ELODY</title>
+    </head>
+
+
+    <body>
+
+        <!-- NAVIGATION BAR -->
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav_home">ELODY.</a></li>
+                <li><a href="events.html">EVENEMENTS</a></li>
+                <li><a href="contact.html">OÙ ME RETROUVER</a></li>
+            </ul>
+        </nav>
+
+
+        <!-- CONTENU DE LA PAGE -->
+        <div class="main">
+            <h3>RECHERCHES</h3>
+
+            <!-- LISTE DES ARTICLES -->
+            <div class="article">
+                <h5 class="article_titre">Traitement d'image numérique</h5>
+                <p><em>Novembre 2022</em></p>
+
+                <p>L’objectif de ce TP est de se familiariser avec l’application ImageJ, qui est un logiciel de traitement d’image. À l’aide de ses outils, nous pouvons produire plusieurs effets différents sur des images comme la convolution numérique.</p>
+
+                <p><b>Illustration</b></p>
+
+                <div class="elem_center">
+                    <img src="medias/fluo.jpg" style="filter : grayscale(90%); width: 32%; float:left;">
+                    <img src="medias/fluo.jpg" style="filter: sepia(60%); width: 32%;">
+                    <img src="medias/fluo.jpg" style="filter: blur(3px); width: 32%; float: right;">
+                    <p>Filtre Noir et Blanc, Sepia, Flou</p>
+                </div>
+
+                <p>Le TP est entièrement réalisé avec l'application <b>ImageJ</b>. C'est un logiciel du domaine public et au code source ouvert (Java). En utilisant ImageJ, il y a la possibilité de programmer une chaı̂ne de traitements en écrivant des macros et d'étendre les capacités du logiciel avec de nombreux plugins. Le logiciel travaille sur des images de huit bits et n’affiche que des résultats entiers positifs. Le niveau de gris noir est représenté par la valeur 0, et le niveau de gris blanc est représenté par la valeur 255.</p>
+
+                <div class="elem_center">
+                    <a href="medias/tp2_2022.pdf"><button>Sujet</button></a>
+                    <a href="medias/tp2_sol.pdf"><button>Document</button></a>
+                </div>
+            </div>
+
+            <hr class="separator">
+
+            <div class="article">
+                <h5 class="article_titre">Analyse des histogrammes des images numériques</h5>
+                <p><em>Octobre 2022</em></p>
+
+                <p>L'objectif de ce TP est de se familiariser avec les différetns traitements d'images. Pour cela, il suffit de connaître les différents histogrammes de l'image qui utilisent le niveau de gris de chaque pixel de l'image.</p>
+
+                <p><b>Illustration</b></p>
+
+                <div class="elem_center">
+                    <img src="medias/tp1_img.png" style="width: 100%">
+                </div>
+
+                <p>Sur l'image ci-dessus, nous avons utilisé plusieurs traitements comme l'égalisation et la normalisation d'image. Le contraste, la luminosité et l'aspect principal de l'image d'origine change.</p>
+
+                <div class="elem_center">
+                    <a href="medias/tp1_2022.pdf"><button>Sujet</button></a>
+                    <a href="medias/tp1_sol.pdf"><button>Document</button></a>
+                    <a href="medias/excel_tp1.ods"><button>Calcul</button></a>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- FOOTER -->
+        <footer></footer>
+
+    </body>
+</html>
+
